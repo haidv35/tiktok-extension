@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Tiktok</title>
-  <link rel="stylesheet" type="text/css" href="dist/components/reset.css">
+  <!-- <link rel="stylesheet" type="text/css" href="dist/components/reset.css">
   <link rel="stylesheet" type="text/css" href="dist/components/site.css">
 
   <link rel="stylesheet" type="text/css" href="dist/components/container.css">
@@ -17,29 +17,77 @@
   <link rel="stylesheet" type="text/css" href="dist/components/list.css">
   <link rel="stylesheet" type="text/css" href="dist/components/segment.css">
   <link rel="stylesheet" type="text/css" href="dist/components/dropdown.css">
-  <link rel="stylesheet" type="text/css" href="dist/components/icon.css">
-  <link rel="stylesheet" type="text/css" href="dist/semantic.css">
+  <link rel="stylesheet" type="text/css" href="dist/components/icon.css"> -->
+  <!-- <link rel="stylesheet" type="text/css" href="dist/semantic.css"> -->
+  <style>
+    *{
+      padding:0;
+      margin:0;
+    }
+    body{
+      width: 300px;
+      height: 533px;
+      color:white;
+      background: #000;
+    }
+    #wrapper{
+      position: absolute;
+      top: 50%;
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+    #wrapper video{
+      position: relative;
+      z-index: 1;
+    }
+    #info{
+      font-size: 11pt;
+      line-height: 1.25rem;
+      position: absolute;
+      display: block;
+      z-index: 2;
+      left: 10px;
+      bottom: 5%;
+    }
+  </style>
 </head>
-<body sty>
-  <div class="ui card" style="width: 100%!important;">
-    <div class="image" style="min-height: 25rem;">
-      <img class="ui wireframe image" src="images/image.png">
+<body>
+  <div id="wrapper">
+    <video autoplay="" loop id="video" width="100%" height="100%">
+      <source src="" type="video/mp4">
+    </video>
+    <div id="info">
+      <p id="name"></p>
+      <div style="width: 255px;">
+        <p id="description"></p>
+      </div>
+      <marquee id="music" width="50%"></marquee>
     </div>
-    <div class="content">
-      <h3 class="header">Example</h3>
-      <div class="meta">
-        <span class="date">Created in Sep 2014</span>
+    
+  </div>
+  <!-- <div class="" style="min-height: 580px;">
+    <div class="ui card" style="width: 100%!important;min-height: 580px">
+      <div class="image" style="min-height: 30rem;">
+        <video autoplay="" loop id="video" width="100%" height="550px">
+          <source src="" type="video/mp4">
+        </video>
+      </div>
+      <div class="content">
+        <h5 id="header"></h5>
+        <div class="meta">
+          <span class="date" id="uploadDate"></span>
+        </div>
+      </div>
+      <div class="extra content">
+        <span class="right floated">
+          <i class="heart outline like icon"></i> <span id="reaction"></span>
+        </span>
+        <span class="left floated">
+          <i class="user icon"></i> <span id="user"></span>
+        </span>
       </div>
     </div>
-    <div class="extra content">
-      <span class="right floated">
-        <i class="heart outline like icon"></i>
-        17
-      </span>
-      <span class="left floated">
-        <i class="user icon"></i> Elliot
-      </span>
-    </div>
-  </div>
+  </div> -->
+  <script src="js/popup.js"></script>
 </body>
 </html>
