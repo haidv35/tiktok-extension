@@ -36,7 +36,7 @@
       -ms-transform: translateY(-50%);
       transform: translateY(-50%);
     }
-    #wrapper video{
+    #wrapper #video{
       position: relative;
       z-index: 1;
     }
@@ -49,13 +49,25 @@
       left: 10px;
       bottom: 5%;
     }
+    #continueBtn{
+      position: absolute;
+      z-index: 3;
+      /* left: 41%; */
+      /* bottom: 45%; */
+      width: 4rem;
+      height: 4rem;
+      top: 40%;
+      left: 40%;
+    } 
+    
   </style>
 </head>
 <body>
   <div id="wrapper">
-    <video autoplay="" loop id="video" width="100%" height="100%">
+    <video autoplay loop id="video" width="100%" height="100%">
       <source src="" type="video/mp4">
     </video>
+    <a href="#"><img src="images/continue.png" alt="" id="continueBtn" style="display: none;"></a>
     <div id="info">
       <p id="name"></p>
       <div style="width: 255px;">
@@ -65,29 +77,6 @@
     </div>
     
   </div>
-  <!-- <div class="" style="min-height: 580px;">
-    <div class="ui card" style="width: 100%!important;min-height: 580px">
-      <div class="image" style="min-height: 30rem;">
-        <video autoplay="" loop id="video" width="100%" height="550px">
-          <source src="" type="video/mp4">
-        </video>
-      </div>
-      <div class="content">
-        <h5 id="header"></h5>
-        <div class="meta">
-          <span class="date" id="uploadDate"></span>
-        </div>
-      </div>
-      <div class="extra content">
-        <span class="right floated">
-          <i class="heart outline like icon"></i> <span id="reaction"></span>
-        </span>
-        <span class="left floated">
-          <i class="user icon"></i> <span id="user"></span>
-        </span>
-      </div>
-    </div>
-  </div> -->
   <script src="js/popup.js"></script>
 </body>
 </html>

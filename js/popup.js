@@ -11,9 +11,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		document.getElementById("video").src = data['contentUrl'];
 		user = data['url'].split("/")[3];
 	    document.getElementById("name").innerHTML = user;
-// 	    uploadDate = new Date(data['uploadDate']);
-// 	    document.getElementById("uploadDate").innerHTML = ('0' + uploadDate.getDate()).slice(-2)  + "-" + ('0' + (uploadDate.getMonth()+1)).slice(-2) + "-" + uploadDate.getFullYear() + " " +
-// ('0' + uploadDate.getHours()).slice(-2) + ":" + ('0' + uploadDate.getMinutes()).slice(-2);
 	    document.getElementById("description").innerHTML = data['name'];
 	    document.getElementById("music").innerHTML = data['audio']['name'];
 	}
@@ -21,49 +18,92 @@ document.addEventListener('DOMContentLoaded', function () {
 		if(index != 0){
 			display(data[index]);
 		}
-		var xhr = new XMLHttpRequest();
-		xhr.open("GET", "https://www.tiktok.com/node/share/trending", true);
-		xhr.onreadystatechange = function() {
-		  if (xhr.readyState == 4) {
-		  	data = JSON.parse(xhr.responseText)['body']['itemList'];
-		  	dataLength = data.length;
-		    display(data[index]);
-		  }
+		else{
+			var xhr = new XMLHttpRequest();
+			xhr.open("GET", "https://www.tiktok.com/node/share/trending", true);
+			xhr.onreadystatechange = function() {
+			  if (xhr.readyState == 4) {
+			  	data = JSON.parse(xhr.responseText)['body']['itemList'];
+			  	dataLength = data.length;
+			    display(data[index]);
+			  }
+			}
+			xhr.send();
 		}
-		xhr.send();
 	};
 	getJsonTikTok(0);
 
+
+
+	window.addEventListener('click',function(event){
+		let video = document.getElementById("video");
+		let continueBtn = document.getElementById("continueBtn");
+		if(video.paused){
+			video.play();
+			continueBtn.style.display = "none";
+		}
+		else{
+			continueBtn.style.display = "block";
+			video.pause();
+		}
+	});
+
+
+
 	//Next to new video
 	var scrollStatus = {
-	    wheeling: false,
-	    functionCall: false
+	    wheeling: false
 	  };
 	var scrollTimer = false;
 	window.addEventListener('wheel', function (event) {
-		if (event.deltaY < 0)
+		if (event.deltaY > 0)
 		{
-
-		}
-		else if (event.deltaY > 0)
-		{
-			scrollStatus.wheeling = true;
-		    if (!scrollStatus.functionCall) {
+		    if (!scrollStatus.wheeling) {
 		    	if(current < dataLength){
-		    		current += 1;
+		    		current++;
 		    		getJsonTikTok(current);
 		    	}
 		    	else{
 		    		getJsonTikTok(0);
 		    	}
-		      	scrollStatus.functionCall = true;
+		      	scrollStatus.wheeling = true;
 		    }
-		    window.clearInterval(scrollTimer);
-		    scrollTimer = window.setTimeout(function() {
+		    window.clearTimeout(scrollTimer);
+		    window.setTimeout(function() {
 		      scrollStatus.wheeling = false;
-		      scrollStatus.functionCall = false;
-		    }, 400);
+		    }, 800);
 		}
+	});
+	var scrollStatus = {
+	    wheeling: false,
+	  };
+	var scrollTimer = false;
+
+	window.addEventListener('keydown', function(event) {
+	    const key = event.key; 
+	    switch (event.key) {
+	    	case "ArrowRight":
+		    case "ArrowDown":
+			    if (!scrollStatus.wheeling) {
+			    	if(current < dataLength){
+			    		current += 1;
+			    		getJsonTikTok(current);
+			    	}
+			    	else{
+			    		getJsonTikTok(0);
+			    	}
+			      	scrollStatus.wheeling = true;
+			    }
+		    	window.clearInterval(scrollTimer);
+			    scrollTimer = window.setTimeout(function() {
+			      scrollStatus.wheeling = false;
+			    }, 500);
+		        break;
+		    // case "ArrowLeft":
+		    // case "ArrowUp":
+		    //     break;
+		}
+
 	});
 });
 
